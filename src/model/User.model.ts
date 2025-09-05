@@ -77,12 +77,4 @@ class User {
   }
 }
 
-User.update("6", {
-  name: "Emily bejamin Pinto Melo",
-  phone: 21012345678,
-  message: "Alô galerinha!",
-}).then(() => {
-  console.log(User.findAll());
-});
-
 export default User;
