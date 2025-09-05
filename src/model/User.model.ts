@@ -56,11 +56,13 @@ class User {
     });
   }
   static async save(user) {
+    const idGeneretion = db.length + 1;
+    user.id = String(idGeneretion);
     return db.push(user);
   }
   static async update(id, user: any) {
     const idUser = db.findIndex((el) => {
-      el.id == id;
+      return el.id == id;
     });
 
     db[idUser].name = user.name;
@@ -75,19 +77,12 @@ class User {
   }
 }
 
-console.log(User.findAll());
-console.log("====================");
-User.findById("7").then((result) => console.log(result));
-console.log("====================");
-console.log(
-  User.save({
-    id: "8",
-    name: "Peter bejamin park",
-    phone: 21012345678,
-    message: "........",
-  })
-);
-console.log("====================");
-console.log(User.findAll());
+User.update("6", {
+  name: "Emily bejamin Pinto Melo",
+  phone: 21012345678,
+  message: "Alô galerinha!",
+}).then(() => {
+  console.log(User.findAll());
+});
 
 export default User;
